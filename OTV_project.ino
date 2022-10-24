@@ -1,15 +1,17 @@
 #include "Enes100.h"
 #include "constants.h"
 #include "HX711.h"
-//#include "Motor.h"
+#include "Motor.h"
+#include "Drivetrain.h"
 #include <Servo.h>
 
 // https://roboticsbackend.com/arduino-object-oriented-programming-oop/
 // CREATE CLASS FOR THE MOTORS, DRIVETRAIN
 
 HX711 scale;
-//Motor leftMotor(MOTOR_1_DIRECTION, MOTOR_1_SPEED);
-//Motor rightMotor(MOTOR_2_DIRECTION, MOTOR_2_SPEED);
+Motor leftMotor(MOTOR_1_DIRECTION, MOTOR_1_SPEED);
+Motor rightMotor(MOTOR_2_DIRECTION, MOTOR_2_SPEED);
+Drivetrain drivetrain(leftMotor, rightMotor);
 Servo myServo;
 int pos = 0;
 
@@ -31,4 +33,5 @@ void loop() {
   }
   //leftMotor.forward(DEFAULT_SPEED);
   //rightMotor.forward(DEFAULT_SPEED);
+  drivetrain.drive(DEFAULT_SPEED, 1000);
 }

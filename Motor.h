@@ -10,7 +10,9 @@ class Motor {
   public:
     Motor(byte directionPin, byte speedPin);
     void init();
-    void drive();
+    void drive(int motorSpeed);
+    void forward(int motorSpeed);
+    void backward(int motorSpeed);
     void off();
 };
 #endif

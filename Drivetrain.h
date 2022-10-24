@@ -6,14 +6,14 @@
 class Drivetrain {
   
   private:
-    Motor leftMotor;
-    Motor rightMotor;
+    Motor& leftMotor;
+    Motor& rightMotor;
     
   public:
-    Drivetrain(Motor leftMotor, Motor rightMotor);
+    Drivetrain(Motor& leftMotor, Motor& rightMotor);
     void init();
     void brake();
-    void drive();
-    void turn();
+    void drive(int driveSpeed, int driveTime);
+    void turn(int driveSpeed, int driveTime);
 };
 #endif

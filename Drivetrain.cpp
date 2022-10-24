@@ -1,13 +1,13 @@
 #include "Drivetrain.h"
 
-Drivetrain::Drivetrain(Motor leftMotor, Motor rightMotor){
-  this->leftMotor = leftMotor;
-  this->rightMotor = rightMotor;
+Drivetrain::Drivetrain(Motor& refLeftMotor, Motor& refRightMotor)
+  :leftMotor(refLeftMotor), 
+  rightMotor(refRightMotor){
   init();
 }
 
 void Drivetrain::init(){
-  off();
+  brake();
 }
 
 void Drivetrain::brake(){

@@ -38,7 +38,7 @@ public:
   bool mission(int type, Coordinate& message);
   template <typename T>
   void print(T message);
-  template <typename T>
+  template <typename T> 
   void println(T message);
   
   Coordinate location;
