@@ -33,5 +33,4 @@ void loop() {
   }
   //leftMotor.forward(DEFAULT_SPEED);
   //rightMotor.forward(DEFAULT_SPEED);
-  drivetrain.drive(DEFAULT_SPEED, 1000);
 }
