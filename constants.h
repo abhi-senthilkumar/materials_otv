@@ -21,3 +21,7 @@
 // Other constants
 #define DEFAULT_SPEED         255
 #define ARUCO_ID              1
+#define SCALE_SCALE           470.85
+#define LIGHT_AVG             107
+#define MEDIUM_AVG            184
+#define HEAVY_AVG             271
