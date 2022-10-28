@@ -15,8 +15,8 @@ class Scale {
   public:
     Scale(byte doutPin, byte sckPin);
     void init();
-    long read();
-    long read(byte numReadings);
+    int read();
+    int read(byte numReadings);
     byte getWeight();
 };
 #endif
