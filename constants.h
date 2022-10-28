@@ -1,5 +1,4 @@
 // Pins
-
 #define WEIGHT_SENSOR_DOUT    2
 #define WEIGHT_SENSOR_SCK     3
 #define MOTOR_2_DIRECTION     4
