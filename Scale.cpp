@@ -17,7 +17,11 @@ int Scale::read(){
         int reading = hx711_scale.get_units();
         return reading;
     }
-    else return 0;
+    else{
+        Serial.println("scale not ready");
+        delay(50);
+        read();
+    };
 }
 
 int Scale::read(byte num_readings){
@@ -25,7 +29,11 @@ int Scale::read(byte num_readings){
         int reading = hx711_scale.get_units(num_readings);
         return reading;
     }
-    else return 0;
+    else{
+        Serial.println("scale not ready");
+        delay(50);
+        read(num_readings);
+    }
 }
 
 byte Scale::getWeight(){
@@ -33,6 +41,7 @@ byte Scale::getWeight(){
     int lightDistance = abs(reading - LIGHT_AVG);
     int mediumDistance = abs(reading - MEDIUM_AVG);
     int heavyDistance = abs(reading - HEAVY_AVG);
+
     if(lightDistance < mediumDistance && lightDistance < heavyDistance){
         return LIGHT;
     }

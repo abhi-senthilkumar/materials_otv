@@ -3,17 +3,23 @@
 #include <Arduino.h>
 #include "Enes100.h"
 
-class Drivetrain {
+class Mission {
   
   private:
-    Motor leftMotor;
-    Motor rightMotor;
-    
+    char* teamName;
+    byte missionType;
+    byte arucoID;
+    byte txPin;
+    byte rxPin;
+
   public:
-    Drivetrain(Motor leftMotor, Motor rightMotor);
+    Mission(char* teamName, byte missionType, byte arucoID, byte rxPin, byte txPin);
     void init();
-    void brake();
-    void drive();
-    void turn();
+    void updateLocation();
+    double getX();
+    double getY();
+    double getAngle(bool degrees = true);
+    void updateBlockWeight(byte weight);
+    void updateBlockMaterial(byte material);
 };
 #endif
