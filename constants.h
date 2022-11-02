@@ -19,6 +19,7 @@
 
 // Other constants
 #define DEFAULT_SPEED         255
+#define TEAM_NAME             "Material Girl"
 #define ARUCO_ID              1
 #define SCALE_SCALE           470.85
 #define LIGHT_AVG             107

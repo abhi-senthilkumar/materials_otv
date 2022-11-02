@@ -6,14 +6,15 @@
 class Mission {
   
   private:
-    char* teamName;
+    String teamName;
     byte missionType;
     byte arucoID;
     byte txPin;
     byte rxPin;
+    VisionSystemClient& Enes100;
 
   public:
-    Mission(char* teamName, byte missionType, byte arucoID, byte rxPin, byte txPin);
+    Mission(String teamName, byte missionType, byte arucoID, byte rxPin, byte txPin, VisionSystemClient& Enes100);
     void init();
     void updateLocation();
     double getX();

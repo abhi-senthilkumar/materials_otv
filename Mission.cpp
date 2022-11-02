@@ -1,6 +1,7 @@
 #include "Mission.h"
 
-Mission::Mission(char* teamName, byte missionType, byte arucoID, byte rxPin, byte txPin){
+Mission::Mission(String teamName, byte missionType, byte arucoID, byte rxPin, byte txPin, VisionSystemClient& refEnes100)
+    :Enes100(refEnes100){
     this->teamName = teamName;
     this->missionType = missionType;
     this->arucoID = arucoID;
@@ -10,26 +11,27 @@ Mission::Mission(char* teamName, byte missionType, byte arucoID, byte rxPin, byt
 }
 
 void Mission::init(){
-    Enes100.begin(teamName, missionType, arucoID, rxPin, txPin);
+    const char *teamName_char = teamName.c_str();
+    Enes100.begin(teamName_char, missionType, arucoID, rxPin, txPin);
 }
 
-void updateLocation(){
+void Mission::updateLocation(){
     while(!Enes100.updateLocation()){
 
     }
 }
 
-double getX(){
+double Mission::getX(){
     updateLocation();
     return Enes100.location.x;
 }
 
-double getY(){
+double Mission::getY(){
     updateLocation();
     return Enes100.location.y;
 }
 
-double getAngle(bool degrees){
+double Mission::getAngle(bool degrees){
     updateLocation();
     if(degrees){
         return Enes100.location.theta * 180 / 3.14;
@@ -37,10 +39,10 @@ double getAngle(bool degrees){
     return Enes100.location.theta;
 }
 
-void updateBlockWeight(byte weight){
+void Mission::updateBlockWeight(byte weight){
     Enes100.mission(WEIGHT, weight);
 }
 
-void updateBlockMaterial(byte material){
+void Mission::updateBlockMaterial(byte material){
     Enes100.mission(MATERIAL, material);
 }

@@ -44,6 +44,4 @@
 #define SALT_POLLUTED     3
 
 
-extern VisionSystemClient Enes100;
-
 #endif /* Enes100_h */
