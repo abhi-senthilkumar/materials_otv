@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include "Motor.h"
 #include "Mission.h"
+#include "Constants.h"
 
 class Drivetrain {
   
@@ -15,8 +16,10 @@ class Drivetrain {
     Drivetrain(Motor& leftMotor, Motor& rightMotor, Mission& mission);
     void init();
     void brake();
-    void drive(int driveSpeed, int driveTime);
-    void turn(int driveSpeed, int driveTime);
+    void drive(int driveSpeed);
+    void driveFor(int driveSpeed, int driveTime);
+    void turn(int driveSpeed);
+    void turnFor(int driveSpeed, int driveTime);
     void turnTo(double finalAngle);
     void goTo(double finalX, double finalY, double finalAngle);
 };
