@@ -3,7 +3,6 @@
 Scale::Scale(byte doutPin, byte sckPin){
   this->doutPin = doutPin;
   this->sckPin = sckPin;
-  init();
 }
 
 void Scale::init(){

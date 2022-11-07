@@ -7,17 +7,18 @@ Mission::Mission(String teamName, byte missionType, byte arucoID, byte rxPin, by
     this->arucoID = arucoID;
     this->rxPin = rxPin;
     this->txPin = txPin;
-    init();
+    //init();
 }
 
 void Mission::init(){
     const char *teamName_char = teamName.c_str();
-    Enes100.begin(teamName_char, missionType, arucoID, rxPin, txPin);
+    bool a = Enes100.begin(teamName_char, missionType, arucoID, rxPin, txPin);
+    Serial.println(a);
 }
 
 void Mission::updateLocation(){
     while(!Enes100.updateLocation()){
-
+        Serial.println("updating location");
     }
 }
 
@@ -34,7 +35,7 @@ double Mission::getY(){
 double Mission::getAngle(bool degrees){
     updateLocation();
     if(degrees){
-        return Enes100.location.theta * 180 / 3.14;
+        return Enes100.location.theta * 180 / 3.1415;
     }
     return Enes100.location.theta;
 }

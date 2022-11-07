@@ -3,7 +3,6 @@
 Ultrasonic::Ultrasonic(byte trigPin, byte echoPin){
     this->trigPin = trigPin;
     this->echoPin = echoPin;
-    init();
 }
 
 void Ultrasonic::init(){

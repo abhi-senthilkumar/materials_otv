@@ -23,7 +23,7 @@
 #define DRIVE_SENSITIVITY     0.05
 
 #define TEAM_NAME             "Material Girl"
-#define ARUCO_ID              1
+#define ARUCO_ID              251
 #define SCALE_CONSTANT        470.85
 #define LIGHT_AVG             107
 #define MEDIUM_AVG            184
