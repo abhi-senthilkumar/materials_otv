@@ -18,6 +18,8 @@ class Drivetrain {
     void brake();
     void drive(int driveSpeed);
     void driveFor(int driveSpeed, int driveTime);
+    void driveTank(int leftSpeed, int rightSpeed);
+    int getTurnDirection(double startAngle, double finalAngle);
     void turn(int driveSpeed);
     void turnFor(int driveSpeed, int driveTime);
     void turnTo(double finalAngle);

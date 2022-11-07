@@ -8,7 +8,7 @@ Scale::Scale(byte doutPin, byte sckPin){
 
 void Scale::init(){
     hx711_scale.begin(doutPin, sckPin);
-    hx711_scale.set_scale(SCALE_SCALE);
+    hx711_scale.set_scale(SCALE_CONSTANT);
     hx711_scale.tare();
 }
 

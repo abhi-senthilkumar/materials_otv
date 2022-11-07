@@ -21,6 +21,11 @@ void Drivetrain::drive(int driveSpeed){
   rightMotor.drive(driveSpeed);
 }
 
+void Drivetrain::driveTank(int leftSpeed, int rightSpeed){
+  leftMotor.drive(leftSpeed);
+  rightMotor.drive(rightSpeed);
+}
+
 void Drivetrain::driveFor(int driveSpeed, int driveTime){
   drive(driveSpeed);
   delay(driveTime);
@@ -37,35 +42,38 @@ void Drivetrain::turnFor(int driveSpeed, int driveTime){
   delay(driveTime);
 }
 
-//really bs way of doing it until i can think of a better way
-//just rotate right until we are at the right angle
-void Drivetrain::turnTo(double finalAngle){
-  double startAngle = mission.getAngle();
-  while(abs(mission.getAngle() - finalAngle) > 3){
-    if(abs(mission.getAngle() - finalAngle) > 30){
-      turn(DEFAULT_SPEED);
-    }
-    else{
-      turn(DEFAULT_SPEED / 2);
-    }
-  }  
+//d is finalAngle - startAngle
+//s is sign(d)
+//m is + if |d| > 180, else -
+//t is + if turn right, else -
+//s m t
+//- - +
+//+ + +
+//- + -
+//+ - -
+//from this we can see that t is just s * m 
+int Drivetrain::getTurnDirection(double startAngle, double finalAngle){
+    int diff = int(finalAngle - startAngle);
+    int sign = abs(diff) / diff;
+    int gt180 = abs(diff) > 180 ? 1 : -1;
+    return sign * gt180;
 }
 
-//really bs way of doing this until i come up with a better way
-//rotate right until correct angle and then drive until within ballpark of point 
+void Drivetrain::turnTo(double finalAngle){
+  while(abs(mission.getAngle() - finalAngle > TURN_SENSITIVITY)){
+    turn(getTurnDirection(mission.getAngle(), finalAngle) * DEFAULT_SPEED);
+  }
+  brake();
+}
+
 void Drivetrain::goTo(double finalX, double finalY, double finalAngle){
-  //first we will turn to point towards the new x and y location
   double startX = mission.getX();
   double startY = mission.getY();
   double startAngle = mission.getAngle();
   double driveAngle = atan2(finalY - startY,finalX - startX);
   turnTo(driveAngle);
-  while(abs(mission.getX() - finalX) > 5 && abs(mission.getY() - finalY) > 5){
-    if(abs(mission.getX() - finalX) > 5 && abs(mission.getY() - finalY) > 30){
-      drive(DEFAULT_SPEED);
-    }
-    else{
-      drive(DEFAULT_SPEED / 2);
-    }
-  }
+  while(sqrt(pow(mission.getX() - finalX, 2)+ pow(mission.getY() - finalY, 2)) > DRIVE_SENSITIVITY){
+    drive(DEFAULT_SPEED);
+	}
+	brake();
 }

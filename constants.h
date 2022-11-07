@@ -17,11 +17,16 @@
 #define INFRARED_1            A3
 #define INFRARED_2            A4
 
-// Other constants
+// drivetrain constants
 #define DEFAULT_SPEED         255
+#define TURN_SENSITIVITY      1
+#define DRIVE_SENSITIVITY     0.05
+
 #define TEAM_NAME             "Material Girl"
 #define ARUCO_ID              1
-#define SCALE_SCALE           470.85
+#define SCALE_CONSTANT        470.85
 #define LIGHT_AVG             107
 #define MEDIUM_AVG            184
 #define HEAVY_AVG             271
+#define ULTRASONIC_CONSTANT   0.017
+#define OBSTACLE_CONSTANT     50
