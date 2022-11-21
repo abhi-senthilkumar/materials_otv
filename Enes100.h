@@ -43,5 +43,4 @@
 #define SALT_UNPOLLUTED   2
 #define SALT_POLLUTED     3
 
-
 #endif /* Enes100_h */

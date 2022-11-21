@@ -18,12 +18,15 @@
 #define INFRARED_2            A4
 
 // drivetrain constants
-#define DEFAULT_SPEED         255
-#define TURN_SENSITIVITY      1
-#define DRIVE_SENSITIVITY     0.05
+#define MAX_SPEED             255
+#define MAX_DPS               90.0
+#define MAX_MPS               0.30         
+#define DEFAULT_SPEED         0.75
+#define TURN_SENSITIVITY      3
+#define DRIVE_SENSITIVITY     0.15
 
 #define TEAM_NAME             "Material Girl"
-#define ARUCO_ID              251
+#define ARUCO_ID              12
 #define SCALE_CONSTANT        470.85
 #define LIGHT_AVG             107
 #define MEDIUM_AVG            184

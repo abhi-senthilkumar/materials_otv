@@ -6,9 +6,11 @@ Scale::Scale(byte doutPin, byte sckPin){
 }
 
 void Scale::init(){
+    Serial.println("started");
     hx711_scale.begin(doutPin, sckPin);
     hx711_scale.set_scale(SCALE_CONSTANT);
     hx711_scale.tare();
+    Serial.println("done");
 }
 
 int Scale::read(){

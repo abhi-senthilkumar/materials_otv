@@ -17,6 +17,7 @@ class Mission {
     Mission(String teamName, byte missionType, byte arucoID, byte rxPin, byte txPin, VisionSystemClient& Enes100);
     void init();
     void updateLocation();
+    void println(String content);
     double getX();
     double getY();
     double getAngle(bool degrees = true);
