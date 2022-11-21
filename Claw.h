@@ -22,5 +22,6 @@ public:
     void rotateBack();
     void release();
     void resetRotation();
+    void end();
 };
 #endif
