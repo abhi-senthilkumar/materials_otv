@@ -21,12 +21,12 @@
 #define MAX_SPEED             255
 #define MAX_DPS               90.0
 #define MAX_MPS               0.30         
-#define DEFAULT_SPEED         0.75
-#define TURN_SENSITIVITY      3
+#define DEFAULT_SPEED         1.0
+#define TURN_SENSITIVITY      5
 #define DRIVE_SENSITIVITY     0.15
 
 #define TEAM_NAME             "Material Girl"
-#define ARUCO_ID              12
+#define ARUCO_ID              6
 #define SCALE_CONSTANT        470.85
 #define LIGHT_AVG             107
 #define MEDIUM_AVG            184
