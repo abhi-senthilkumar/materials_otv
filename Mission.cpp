@@ -13,14 +13,14 @@ Mission::Mission(String teamName, byte missionType, byte arucoID, byte rxPin, by
 void Mission::init(){
     const char *teamName_char = teamName.c_str();
     while(!Enes100.begin(teamName_char, missionType, arucoID, rxPin, txPin)){
-        Serial.println("beginning wifi module");
+        //Serial.println("beginning wifi module");
     }
-    Serial.println("wifi module began");
+    //Serial.println("wifi module began");
 }
 
 void Mission::updateLocation(){
     while(!Enes100.updateLocation()){
-        Serial.println("updating location");
+        //Serial.println("updating location");
     }
 }
 
@@ -51,6 +51,6 @@ void Mission::updateBlockMaterial(byte material){
 }
 
 void Mission::println(String content){
-    Serial.println(content);
+    //Serial.println(content);
     Enes100.println(content);
 }

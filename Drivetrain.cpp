@@ -4,7 +4,6 @@ Drivetrain::Drivetrain(Motor& refLeftMotor, Motor& refRightMotor, Mission& refMi
   :leftMotor(refLeftMotor), 
   rightMotor(refRightMotor),
   mission(refMission){
-  init();
 }
 
 void Drivetrain::init(){
@@ -69,12 +68,14 @@ double Drivetrain::getTimeToTurn(double angle, double turnFrac){
 
 void Drivetrain::turnTo(double finalAngle, double turnFrac){
   double dist = abs(mission.getAngle() - finalAngle);
-  mission.println("turning");
+  //mission.println("turning");
   while(dist > TURN_SENSITIVITY){
     dist = abs(mission.getAngle() - finalAngle);
     //mission.println("angle diff: " + String(dist) + ", speed: " + String(getSpeed(dist, true)));
     turn(getTurnDirection(mission.getAngle(), finalAngle) * MAX_SPEED * turnFrac * getSpeed(dist, true));
   }
+  brake();
+  delay(500);
 }
 
 double Drivetrain::getTimeToDrive(double distance, double driveFrac){
@@ -95,6 +96,18 @@ double Drivetrain::getCorrectionAmount(double currentX, double currentY, double 
   else return 0;
 }
 
+void Drivetrain::turnTowards(double finalX, double finalY, double turnFrac, int forward){
+  double startX = mission.getX();
+  double startY = mission.getY();
+  double startAngle = mission.getAngle();
+  double turnAngle = atan2(finalY - startY,finalX - startX) * 180 / 3.1415;
+  if(forward != 1){
+    turnAngle = turnAngle + 180 > 180 ? turnAngle - 180 : turnAngle + 180;
+  }
+  turnTo(turnAngle);
+}
+  
+
 void Drivetrain::goTo(double finalX, double finalY, double finalAngle, double driveFrac, int forward){
   double startX = mission.getX();
   double startY = mission.getY();
@@ -103,9 +116,9 @@ void Drivetrain::goTo(double finalX, double finalY, double finalAngle, double dr
   if(forward != 1){
     turnAngle = turnAngle + 180 > 180 ? turnAngle - 180 : turnAngle + 180;
   }
-  mission.println("y: " + String(finalY - startY) + ", x: " + String(finalX - startX) + ", atan2: " + String(turnAngle));
+  //mission.println("y: " + String(finalY - startY) + ", x: " + String(finalX - startX) + ", atan2: " + String(turnAngle));
   turnTo(turnAngle);
-  double dist = sqrt(pow(mission.getX() - finalX, 2)+ pow(mission.getY() - finalY, 2));
+  double dist = sqrt(pow(mission.getX() - finalX, 2) + pow(mission.getY() - finalY, 2));
   while(dist > DRIVE_SENSITIVITY){
     double curX = mission.getX();
     double curY = mission.getY();
@@ -116,7 +129,7 @@ void Drivetrain::goTo(double finalX, double finalY, double finalAngle, double dr
     double correction = getCorrectionAmount(curX, curY, curAngle, finalX, finalY);
     driveTank(min(speed - correction * 30, 255), min(speed + correction * 30, 255));
 	}
-  //mission.println("stopped moving");
 	brake();
   turnTo(finalAngle);
+  delay(1000);
 }

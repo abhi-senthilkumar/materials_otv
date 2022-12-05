@@ -6,11 +6,11 @@ Scale::Scale(byte doutPin, byte sckPin){
 }
 
 void Scale::init(){
-    Serial.println("started");
+    //Serial.println("started");
     hx711_scale.begin(doutPin, sckPin);
     hx711_scale.set_scale(SCALE_CONSTANT);
     hx711_scale.tare();
-    Serial.println("done");
+    //Serial.println("done");
 }
 
 int Scale::read(){
@@ -19,7 +19,7 @@ int Scale::read(){
         return reading;
     }
     else{
-        Serial.println("scale not ready");
+        //Serial.println("scale not ready");
         delay(50);
         read();
     };
@@ -31,7 +31,7 @@ int Scale::read(byte num_readings){
         return reading;
     }
     else{
-        Serial.println("scale not ready");
+        //Serial.println("scale not ready");
         delay(50);
         read(num_readings);
     }

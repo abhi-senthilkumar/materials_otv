@@ -26,6 +26,7 @@ class Drivetrain {
     void turn(int driveSpeed);
     void turnFor(int driveSpeed, int driveTime);
     void turnTo(double finalAngle, double turnFrac = DEFAULT_SPEED);
+    void turnTowards(double finalx, double finalY, double turnFrac = DEFAULT_SPEED, int forward = 1);
     double getTimeToDrive(double distance, double driveFrac);
     void goTo(double finalX, double finalY, double finalAngle, double driveFrac = DEFAULT_SPEED, int forward = 1);
 };

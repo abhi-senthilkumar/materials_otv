@@ -3,7 +3,6 @@
 Motor::Motor(byte directionPin, byte speedPin){
   this->directionPin = directionPin;
   this->speedPin = speedPin;
-  init();
 }
 
 void Motor::init(){
