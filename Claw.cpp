@@ -23,17 +23,28 @@ void Claw::grab()
 
 void Claw::rotateBack()
 {
-    for (int i = 0; i <= 105; i++)
+    for (int i = 0; i <= 120; i++)
     {
         servo1.write(i);
-        servo2.write(180-i);
+        servo2.write(180 - i);
         delay(50);
     }
 }
 
+void Claw::open()
+{
+    servo3.write(85);
+}
+
 void Claw::release()
 {
-    servo3.write(40);
+    servo3.write(65);
+}
+
+void Claw::smallRotate()
+{
+    servo1.write(100);
+    servo2.write(80);
 }
 
 void Claw::resetRotation()
