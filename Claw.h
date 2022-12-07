@@ -21,6 +21,8 @@ public:
     void grab();
     void rotateBack();
     void release();
+    void open();
+    void smallRotate();
     void resetRotation();
     void end();
 };
